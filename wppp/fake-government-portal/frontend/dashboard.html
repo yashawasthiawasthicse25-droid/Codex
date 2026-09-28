@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Government Dashboard</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="app-body">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <h3>Maharashtra Industrial Approval Portal</h3>
+        <div class="demo-tag">⚠ DEMO / SIMULATED</div>
+      </div>
+      <nav>
+        <a href="./dashboard.html" class="active">🏠 Dashboard</a>
+        <a href="./application.html">📋 Applications</a>
+        <a href="./review.html">🔎 Scrutiny</a>
+        <a href="./application.html#queries">❓ Queries</a>
+        <a href="./dashboard.html#demo-controls">⚙ Demo Controls</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <h1>Dashboard</h1>
+        <div class="demo-text">⚠ DEMO GOVERNMENT PORTAL — SIMULATED ENVIRONMENT</div>
+      </header>
+
+      <section class="stats grid-5" id="statsGrid"></section>
+
+      <section class="panel">
+        <h2>Recent Applications</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Application ID</th>
+              <th>Applicant</th>
+              <th>Approval</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="recentApplications"></tbody>
+        </table>
+      </section>
+
+      <section id="demo-controls" class="panel demo-controls">
+        <h2>DEMO CONTROL PANEL</h2>
+        <div class="demo-control-grid">
+          <div>
+            <label>Application</label>
+            <input id="demoApplicationId" value="MAITRI-DEMO-2026-00421" />
+          </div>
+          <div>
+            <label>Current Status</label>
+            <input id="demoCurrentStatus" value="UNDER_SCRUTINY" />
+          </div>
+          <div class="full-width">
+            <label>Remarks</label>
+            <input id="demoRemarks" value="Application under preliminary review." />
+          </div>
+        </div>
+        <div class="button-row">
+          <button data-status="DOCUMENT_VERIFICATION">DOCUMENT_VERIFICATION</button>
+          <button data-status="QUERY_RAISED">QUERY_RAISED</button>
+          <button data-status="APPROVED">APPROVED</button>
+          <button data-status="REJECTED">REJECTED</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>

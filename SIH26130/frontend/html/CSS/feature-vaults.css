@@ -1,0 +1,81 @@
+.information-vault-page { max-width: 1320px; }
+.information-summary, .incentive-summary { display: grid; gap: 16px; align-items: center; margin: 20px 0 14px; padding: 18px 20px; border: 1px solid var(--border); border-radius: 12px; background: #fff; }
+.information-summary { grid-template-columns: 1.2fr 1.4fr 1.6fr; }
+.incentive-summary { grid-template-columns: 1.5fr .6fr .6fr auto; }
+.summary-label, .vault-kicker { color: #1264d8; font-size: 10px; font-weight: 800; letter-spacing: .08em; }
+.summary-status strong, .summary-status p, .summary-progress-top, .summary-progress small, .summary-counts span { display: block; }
+.summary-status strong { margin-top: 6px; color: #a05c00; font-size: 18px; }
+.summary-status p, .summary-progress small, .summary-counts span, .incentive-summary span, .incentive-summary p { color: var(--muted); font-size: 11px; }
+.summary-status p, .incentive-summary p { margin-top: 4px; }
+.summary-progress-top { display: flex; justify-content: space-between; color: #526d8d; font-size: 11px; font-weight: 700; }
+.summary-progress-top strong { color: #1264d8; font-size: 16px; }
+.progress-track { height: 8px; margin: 9px 0 6px; overflow: hidden; border-radius: 99px; background: #e8eef5; }
+.progress-track span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #1769aa, #22a06b); }
+.summary-counts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.summary-counts div { padding-left: 10px; border-left: 1px solid var(--border); }
+.summary-counts strong, .incentive-summary strong { display: block; color: #17212b; font-size: 19px; }
+.summary-counts span { margin-top: 3px; }
+.summary-counts .critical-count strong { color: #b63232; }
+.vault-action-message { min-height: 19px; margin: 10px 0; color: #16714a; font-size: 11px; font-weight: 700; }
+.vault-action-message.error { color: #b63232; }
+.information-field-section, .mapped-application, .vault-explanation { margin: 15px 0; padding: 21px; border: 1px solid var(--border); border-radius: 12px; background: #fff; }
+.field-section-heading, .vault-panel-heading { display: flex; align-items: center; gap: 11px; margin-bottom: 17px; }
+.field-section-icon, .vault-icon { display: grid; width: 35px; height: 35px; place-items: center; border-radius: 8px; color: #1769aa; background: #eaf3ff; }
+.field-section-heading h2, .vault-panel-heading h2 { margin-top: 4px; color: #17212b; font-size: 17px; }
+.information-fields-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+.information-field:has(textarea) { grid-column: span 2; }
+.field-label-row { display: flex; justify-content: space-between; gap: 8px; align-items: center; margin-bottom: 6px; }
+.field-label-row label { color: #29415e; font-size: 11px; font-weight: 700; }
+.field-label-row label span { color: #c83c3c; }
+.information-field input, .information-field textarea, .approval-entry-form input, .approval-entry-form select { width: 100%; border: 1px solid #ccd9e6; border-radius: 7px; padding: 10px 11px; color: #1d334d; background: #fbfdff; font: inherit; font-size: 12px; }
+.information-field textarea { resize: vertical; }
+.field-meta { display: flex; justify-content: space-between; gap: 8px; margin-top: 5px; color: #8998a8; font-size: 9px; }
+.field-error { min-height: 13px; margin-top: 4px; color: #b63232; font-size: 10px; }
+.verification-badge, .incentive-tag { padding: 4px 7px; border-radius: 99px; font-size: 9px; font-weight: 800; }
+.verification-badge.unverified { color: #64748b; background: #eef2f6; }
+.verification-badge.pending-review { color: #8a5a00; background: #fff4d6; }
+.verification-badge.verified { color: #16714a; background: #e1f6eb; }
+.verification-badge.rejected { color: #a12c2c; background: #fde7e7; }
+.vault-actions, .incentive-card-actions { display: flex; flex-wrap: wrap; gap: 9px; margin: 18px 0 24px; }
+.vault-action-button { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; }
+.vault-action-button:hover, .incentive-dashboard-actions button:hover, .incentive-card-actions button:hover { transform: translateY(-2px); }
+.mapped-fields { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.mapped-field { padding: 12px; border: 1px solid #dce7ee; border-radius: 8px; background: #f8fbfd; }
+.mapped-field span, .mapped-field label, .mapped-field strong { display: block; }
+.mapped-field span { color: #1264d8; font-size: 9px; font-weight: 800; }.mapped-field label { margin-top: 8px; color: #64748b; font-size: 10px; }.mapped-field strong { margin-top: 5px; color: #17212b; font-size: 11px; overflow-wrap: anywhere; }
+.vault-explanation { display: flex; align-items: flex-start; gap: 10px; color: #3d5874; }.vault-explanation p { font-size: 11px; line-height: 1.6; }.vault-disclaimer { margin: 12px 0; color: #7b8da1; font-size: 10px; text-align: center; }
+.incentive-notice, .tracking-info-box { display: flex; gap: 10px; align-items: flex-start; margin: 20px 0; padding: 14px 16px; border: 1px solid #cfe0ef; border-radius: 10px; background: #f3f8fc; color: #49647d; font-size: 12px; line-height: 1.5; }
+.incentive-grid, .approval-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.incentive-card, .approval-tracking-section .approval-card { padding: 20px; border: 1px solid #cfeee2; border-radius: 12px; background: linear-gradient(145deg, #e8fff7, #e8f7ff); }
+.approval-tracking-section .approval-card { display: block; min-width: 0; min-height: 0; overflow: hidden; }
+.approval-tracking-section .approval-card-header { min-width: 0; }
+.approval-tracking-section .approval-card-header > div:first-child { min-width: 0; }
+.approval-tracking-section .approval-card h3, .approval-tracking-section .approval-card p { overflow-wrap: anywhere; word-break: break-word; }
+.approval-tracking-section .approval-card h3 { margin: 7px 0 0; color: #17212b; font-size: 16px; line-height: 1.3; }
+.approval-tracking-section .approval-card p { margin-top: 4px; }
+.approval-card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+.approval-card-grid span { min-width: 0; color: #48647f; font-size: 11px; overflow-wrap: anywhere; }
+.approval-card-grid b { display: block; margin-bottom: 3px; color: #17212b; font-size: 10px; }
+.stop-tracking-button { margin-top: 15px; }
+.tracking-card-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+.portal-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; color: #1264d8; font-size: 11px; font-weight: 700; }
+.incentive-card.needs-review { border-color: #eadfbf; background: linear-gradient(145deg, #fffaf0, #f8fbff); }
+.incentive-summary { grid-template-columns: minmax(0, 1.5fr) minmax(100px, .55fr) minmax(130px, .8fr) auto; }
+.incentive-summary > div { min-width: 0; }
+.incentive-summary > a { justify-self: end; white-space: nowrap; }
+.incentive-dashboard-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 18px; }
+.incentive-dashboard-actions button { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; }
+.incentive-notice { max-width: 100%; margin: 18px 0 22px; }
+.incentive-notice span { min-width: 0; }
+.incentive-card { display: flex; min-width: 0; flex-direction: column; }
+.incentive-card-header { min-height: 35px; }
+.incentive-card h2 { margin: 8px 0 0; color: #17212b; line-height: 1.3; overflow-wrap: anywhere; }
+.incentive-card p, .incentive-card li { overflow-wrap: anywhere; }
+.incentive-score { padding: 12px 0; border-top: 1px solid rgba(23, 105, 170, .14); border-bottom: 1px solid rgba(23, 105, 170, .14); }
+.incentive-card-actions { margin-top: auto; padding-top: 12px; }
+.incentive-card-actions button { min-height: 38px; }
+.incentive-disclaimer { margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(23, 105, 170, .12); font-size: 10px !important; }
+.incentive-card-header, .tracking-heading, .approval-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }.incentive-card h2 { margin-top: 7px; font-size: 18px; }.incentive-card h3 { margin-top: 15px; font-size: 12px; }.incentive-card p, .incentive-card li { color: #5e7893; font-size: 12px; line-height: 1.55; }.incentive-card ul { margin: 7px 0 0; padding-left: 18px; }.incentive-score { display: flex; align-items: baseline; gap: 8px; margin-top: 14px; }.incentive-score strong { font-size: 24px; }.incentive-link { display: inline-block; margin-top: 16px; color: #1164d5; font-size: 12px; font-weight: 700; }
+.approval-tracking-section { position: relative; margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border); }.tracking-heading h2 { margin-top: 6px; font-size: 24px; }.tracking-heading p { margin-top: 6px; color: var(--muted); font-size: 12px; }.approval-entry-form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 14px 0 18px; padding: 15px; border: 1px solid var(--border); border-radius: 9px; background: #fff; }.approval-entry-form label { display: block; margin-bottom: 5px; color: #29415e; font-size: 10px; font-weight: 700; }.approval-entry-consent { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; grid-column: 1 / -1; }.approval-entry-consent label { display: flex; align-items: flex-start; gap: 8px; margin: 0; }.approval-entry-consent input { width: auto; flex: 0 0 auto; margin-top: 1px; }.approval-entry-actions { display: flex; align-items: end; gap: 9px; grid-column: 1 / -1; }.tracking-metrics { display: grid; grid-template-columns: repeat(6, 1fr); gap: 9px; }.tracking-metrics > div { padding: 13px 11px; border: 1px solid var(--border); border-radius: 8px; background: #fff; }.tracking-metrics strong, .tracking-metrics span { display: block; }.tracking-metrics span { margin-top: 3px; color: var(--muted); font-size: 9px; }.tracking-progress > div:first-child { display: flex; justify-content: space-between; gap: 10px; }.tracking-toolbar { display: grid; grid-template-columns: 2fr repeat(5, 1fr); gap: 8px; margin: 16px 0; }.tracking-toolbar input, .tracking-toolbar select { min-width: 0; padding: 10px; border: 1px solid #ccd9e6; border-radius: 7px; font: inherit; font-size: 10px; }.notification-panel { position: absolute; z-index: 5; top: 88px; right: 0; width: min(420px, 100%); padding: 15px; border: 1px solid var(--border); border-radius: 10px; background: #fff; box-shadow: 0 14px 35px rgba(16,42,67,.18); }
+@media (max-width: 920px) { .information-summary, .incentive-summary { grid-template-columns: 1fr 1fr; }.summary-counts { grid-column: 1 / -1; }.information-fields-grid, .approval-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }.mapped-fields { grid-template-columns: repeat(3, minmax(0, 1fr)); }.tracking-metrics { grid-template-columns: repeat(3, 1fr); }.tracking-toolbar { grid-template-columns: repeat(3, 1fr); }.tracking-toolbar input { grid-column: 1 / -1; } }
+@media (max-width: 600px) { .information-summary, .incentive-summary, .information-fields-grid, .mapped-fields, .incentive-grid, .approval-cards, .approval-entry-form { grid-template-columns: 1fr; }.summary-counts { grid-column: auto; }.information-field:has(textarea) { grid-column: auto; }.tracking-metrics { grid-template-columns: repeat(2, 1fr); }.tracking-toolbar { grid-template-columns: 1fr; }.tracking-toolbar input { grid-column: auto; }.tracking-heading { display: block; }.approval-card-grid { grid-template-columns: 1fr; } }

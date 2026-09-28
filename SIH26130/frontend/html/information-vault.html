@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Vault | Maharashtra Industrial Support</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/feature-vaults.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div class="brand"><div class="brand-logo"><span>🇮🇳</span></div><div class="brand-text"><h2>महाराष्ट्र शासन</h2><h3>Industrial Support</h3><p>Canonical verified information.</p></div></div>
+        <nav class="navigation">
+            <a href="./index.html" class="nav-item"><i data-lucide="home"></i><div><span>Home</span></div></a>
+            <a href="./profile.html" class="nav-item"><i data-lucide="factory"></i><div><span>Business Profile</span></div></a>
+            <a href="./application.html" class="nav-item"><i data-lucide="file-check-2"></i><div><span>Approval Readiness</span></div></a>
+            <a href="./document-vault.html" class="nav-item"><i data-lucide="vault"></i><div><span>Document Vault</span><small>Uploaded files</small></div></a>
+            <a href="./information-vault.html" class="nav-item active"><i data-lucide="database"></i><div><span>Information Vault</span><small>Structured facts</small></div></a>
+            <a href="./government-incentives.html" class="nav-item"><i data-lucide="sparkles"></i><div><span>Government Incentives</span><small>Incentives Vault</small></div></a>
+        </nav>
+    </aside>
+    <main class="main">
+        <header class="top-header"><div class="header-context">Industrial Support Platform</div></header>
+        <section class="content application-content information-vault-page">
+            <div class="application-intro vault-intro">
+                <a class="back-link" href="./index.html">← Dashboard</a>
+                <span class="eyebrow">INFORMATION VAULT · STRUCTURED FACTS</span>
+                <h1>Enter once. Verify once. Reuse everywhere.</h1>
+                <p>Store structured business facts here. Uploaded files belong in the Document Vault and are never mixed with these canonical records.</p>
+                <div class="vault-principles"><span><i data-lucide="database"></i> Structured facts only</span><span><i data-lucide="shield-check"></i> Field-level verification</span><span><i data-lucide="refresh-cw"></i> Reusable across modules</span></div>
+            </div>
+
+            <section class="information-summary" aria-label="Information Vault summary">
+                <div class="summary-status"><span class="summary-label">VAULT STATUS</span><strong id="overallStatus">NEEDS REVIEW</strong><p id="statusReason">Information is entered but not verified.</p></div>
+                <div class="summary-progress"><div class="summary-progress-top"><span>Verification progress</span><strong id="progressValue">0%</strong></div><div class="progress-track"><span id="progressBar"></span></div><small>Progress never overrides a critical blocker.</small></div>
+                <div class="summary-counts"><div><strong id="totalFields">0</strong><span>Total fields</span></div><div><strong id="verifiedFields">0</strong><span>Verified</span></div><div><strong id="pendingFields">0</strong><span>Pending</span></div><div class="critical-count"><strong id="criticalErrors">0</strong><span>Critical errors</span></div></div>
+            </section>
+
+            <div id="vaultMessage" class="vault-action-message" role="status" aria-live="polite"></div>
+
+            <form id="businessInformationForm" novalidate>
+                <div id="fieldSections"></div>
+                <div class="vault-actions">
+                    <button type="button" class="secondary-btn vault-action-button" id="editButton"><i data-lucide="pencil"></i> Edit</button>
+                    <button type="button" class="secondary-btn vault-action-button" id="saveDraftButton"><i data-lucide="save"></i> Save Draft</button>
+                    <button type="button" class="primary-btn vault-action-button" id="submitVerificationButton"><i data-lucide="send"></i> Submit for Verification</button>
+                    <button type="button" class="primary-btn vault-action-button engine-button" id="approvalEngineButton"><i data-lucide="workflow"></i> Use in Approval Engine</button>
+                    <button type="button" class="secondary-btn vault-action-button" id="applicationFormButton"><i data-lucide="form-input"></i> Use in Application Form</button>
+                </div>
+            </form>
+
+            <section id="mappedApplication" class="mapped-application" hidden>
+                <div class="vault-panel-heading"><div class="vault-icon"><i data-lucide="arrow-down-to-line"></i></div><div><span class="vault-kicker">APPLICATION FORM MAPPING</span><h2>Mapped application labels</h2><p>These values are mapped from the Information Vault for review before submission.</p></div></div>
+                <div id="mappedFields" class="mapped-fields"></div>
+            </section>
+
+            <section class="vault-explanation"><i data-lucide="info"></i><p>Information Vault is the single source of verified business facts. We enter business information once, verify it once, and reuse it across approval, readiness, incentive, application, and compliance modules.</p></section>
+            <p class="vault-disclaimer">Verification status is deterministic for this prototype and does not guarantee government approval.</p>
+
+        <section class="approval-tracking-section" aria-labelledby="approvalTrackingTitle">
+            <div class="tracking-heading">
+                <div>
+                    <span class="eyebrow">INFORMATION VAULT · APPROVAL TRACKING</span>
+                    <h2 id="approvalTrackingTitle">Approval Tracking</h2>
+                    <p>Track approval identifiers, dependencies, status history, and renewal actions using the same verified business context.</p>
+                    <a class="portal-link" data-demo-portal-link href="#" target="_blank" rel="noreferrer"><i data-lucide="external-link"></i> Open Demo Government Portal</a>
+                </div>
+            </div>
+            <div class="tracking-info-box"><i data-lucide="info"></i><p>Enter the approval name, department, and optional existing application ID, then open the demo portal. Autofill and review the Information Vault data there before submitting. ApprovalGuard starts tracking after portal submission.</p></div>
+            <form id="approvalEntryForm" class="approval-entry-form" novalidate>
+                <div><label for="newApprovalName">Approval name</label><input id="newApprovalName" required placeholder="e.g. Factory Licence"></div>
+                <div><label for="newApprovalDepartment">Department</label><input id="newApprovalDepartment" required placeholder="e.g. Directorate of Industrial Safety"></div>
+                <div><label for="newApplicationId">Existing fake portal application ID <small>(optional for a new application)</small></label><input id="newApplicationId" placeholder="e.g. APP-DEMO-2026-0001"></div>
+                <div class="approval-entry-consent"><label><input id="approvalVaultPermission" type="checkbox" required> I allow this application to use my Information Vault details.</label><button type="button" class="secondary-btn" id="fillFromVaultButton">Use Information Vault</button></div>
+                <div id="approvalVaultPreview" class="approval-vault-preview" hidden></div>
+                <div class="approval-entry-actions"><button type="submit" class="primary-btn">Apply through demo portal</button><span id="approvalEntryMessage" role="status"></span></div>
+            </form>
+            <div class="tracking-metrics" aria-label="Approval tracking summary">
+                <div><strong id="trackingTotal">0</strong><span>Total approvals</span></div><div><strong id="trackingApproved">0</strong><span>Approved</span></div><div><strong id="trackingReview">0</strong><span>Under review</span></div><div><strong id="trackingDocuments">0</strong><span>Document pending</span></div><div><strong id="trackingBlocked">0</strong><span>Blocked</span></div><div><strong id="trackingRenewals">0</strong><span>Renewal required</span></div>
+            </div>
+            <div class="tracking-progress"><div><span>Overall progress</span><strong id="trackingProgress">0%</strong></div><div class="progress-track"><span id="trackingProgressBar"></span></div></div>
+            <div id="approvalCards" class="approval-cards"></div>
+        </section>
+        </section>
+    </main>
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="./JS/runtime-config.js"></script>
+<script src="./JS/information-vault.js"></script>
+<script src="./JS/approval-tracking.js"></script>
+</body>
+</html>

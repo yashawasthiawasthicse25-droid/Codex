@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Review</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="app-body">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <h3>Maharashtra Industrial Approval Portal</h3>
+        <div class="demo-tag">⚠ DEMO / SIMULATED</div>
+      </div>
+      <nav>
+        <a href="./dashboard.html">🏠 Dashboard</a>
+        <a href="./application.html">📋 Applications</a>
+        <a href="./review.html" class="active">🔎 Scrutiny</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <h1>APPLICATION REVIEW</h1>
+        <div class="demo-text">⚠ DEMO GOVERNMENT PORTAL — SIMULATED ENVIRONMENT</div>
+      </header>
+
+      <section class="panel review-panel">
+        <h2>Application ID: <span id="reviewApplicationId">MAITRI-DEMO-2026-00421</span></h2>
+        <div class="three-column">
+          <div><strong>Applicant:</strong> <span id="reviewApplicant">ABC Pharmaceuticals Pvt. Ltd.</span></div>
+          <div><strong>Current Status:</strong> <span id="reviewStatus">SUBMITTED</span></div>
+          <div><strong>Department:</strong> <span id="reviewDepartment">Maharashtra FDA</span></div>
+        </div>
+        <hr />
+        <div class="button-row">
+          <button data-status="UNDER_SCRUTINY">Start Scrutiny</button>
+          <button data-status="QUERY_RAISED">Raise Query</button>
+          <button data-status="DOCUMENT_VERIFICATION">Mark Document Verification</button>
+          <button data-status="APPROVED">Approve Application</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>

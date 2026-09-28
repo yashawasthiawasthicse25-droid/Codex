@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo Government Portal</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #eef3f7;
+        color: #17324d;
+      }
+      header {
+        background: #17324d;
+        color: white;
+        padding: 24px 8%;
+      }
+      main {
+        max-width: 1100px;
+        margin: 28px auto;
+        padding: 0 20px;
+      }
+      .banner {
+        background: #f5c451;
+        color: #3a2a00;
+        padding: 14px;
+        font-weight: 700;
+        border-radius: 6px;
+      }
+      .prepare {
+        background: #fff;
+        padding: 22px;
+        margin: 20px 0;
+        border-radius: 6px;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin: 16px 0;
+      }
+      .form-grid label {
+        font-weight: 700;
+        font-size: 13px;
+      }
+      .form-grid input {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 6px;
+        padding: 10px;
+        border: 1px solid #cbd9e3;
+        border-radius: 4px;
+        font: inherit;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        padding: 13px;
+        text-align: left;
+        border-bottom: 1px solid #dce5ec;
+      }
+      a,
+      button {
+        background: #176b87;
+        color: white;
+        border: 0;
+        border-radius: 4px;
+        padding: 9px 12px;
+        text-decoration: none;
+        cursor: pointer;
+        margin: 4px 4px 4px 0;
+        transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+      }
+      button:hover, a:hover { transform: translateY(-2px); box-shadow: 0 7px 16px rgba(23, 107, 135, .2); }
+      button:active, a:active { transform: scale(.98); }
+      button:focus-visible, a:focus-visible { outline: 3px solid rgba(245, 196, 81, .65); outline-offset: 3px; }
+      button:disabled { cursor: wait; opacity: .6; }
+      button.is-busy::after { display: inline-block; width: 12px; height: 12px; margin-left: 8px; content: ""; vertical-align: -2px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: portal-spin .7s linear infinite; }
+      @keyframes portal-spin { to { transform: rotate(360deg); } }
+      #formMessage {
+        font-weight: 700;
+      }
+      @media (max-width: 700px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>DEMO GOVERNMENT PORTAL</h1>
+      <strong>SIMULATED ENVIRONMENT - FOR SIH DEMONSTRATION ONLY</strong>
+    </header>
+    <main>
+      <div class="banner">
+        This is not a real government service. Status changes below are manual
+        demo controls.
+      </div>
+      <section class="prepare">
+        <h2>Prepare an application</h2>
+        <p>Review the values before sending them to this simulated portal.</p>
+        <div class="form-grid">
+          <label
+            >Approval name<input
+              id="approvalName"
+              value="Demo Approval" /></label
+          ><label
+            >Department<input id="department" value="Demo Department" /></label
+          ><label>Business name<input id="businessName" /></label
+          ><label>Applicant name<input id="applicantName" /></label
+          ><label>PAN<input id="pan" /></label
+          ><label>GSTIN<input id="gstin" /></label
+          ><label>Address<input id="address" /></label
+          ><label>Phone<input id="phone" /></label
+          ><label>Email<input id="email" /></label
+          ><label>Industry<input id="industry" /></label>
+        </div>
+        <button id="autofillButton" type="button">
+          Autofill from ApprovalGuard Information Vault</button
+        ><button id="submitButton" type="button">
+          Submit reviewed application
+        </button>
+        <p id="formMessage" role="status"></p>
+      </section>
+      <h2>Applications</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Application ID</th>
+            <th>Business</th>
+            <th>Approval</th>
+            <th>Department</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="applications">
+          <tr>
+            <td colspan="5">Loading...</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+    <script src="./runtime-config.js"></script>
+    <script>
+      const approvalGuardUrl = window.APPROVAL_GUARD_URL;
+      const fields = [
+        "businessName",
+        "applicantName",
+        "pan",
+        "gstin",
+        "address",
+        "phone",
+        "email",
+        "industry",
+      ];
+      const message = document.querySelector("#formMessage");
+      const portalParams = new URLSearchParams(window.location.search);
+      const requestedApprovalName = portalParams.get("approvalName");
+      const requestedDepartment = portalParams.get("department");
+      const requestedApplicationId = portalParams.get("applicationId");
+      if (requestedApprovalName) document.querySelector("#approvalName").value = requestedApprovalName;
+      if (requestedDepartment) document.querySelector("#department").value = requestedDepartment;
+      if (requestedApplicationId) message.textContent = `Existing application ${requestedApplicationId} selected for review.`;
+      document
+        .querySelector("#autofillButton")
+        .addEventListener("click", async () => {
+          const button = document.querySelector("#autofillButton");
+          button.classList.add("is-busy");
+          button.disabled = true;
+          try {
+            const response = await fetch(
+              `${approvalGuardUrl}/api/information-vault/snapshot`,
+            );
+            const result = await response.json();
+            if (!response.ok || !result.data?.records)
+              throw new Error(result.message || "No Information Vault data found.");
+            const records = result.data.records;
+            const value = key => String(records[key]?.fieldValue || "").trim();
+            const values = {
+              businessName: value("business_name"),
+              applicantName: value("owner_name"),
+              pan: value("pan"),
+              gstin: value("gstin"),
+              phone: value("phone_number"),
+              email: value("email"),
+              industry: value("industry"),
+              address: [value("address"), value("district"), value("state")]
+                .filter(Boolean)
+                .join(", "),
+            };
+            fields.forEach((key) => {
+              if (values[key] !== undefined)
+                document.querySelector(`#${key}`).value = values[key] || "";
+            });
+            message.textContent =
+              "Information loaded from ApprovalGuard. Review it before submitting.";
+            message.style.color = "#16714a";
+          } catch (error) {
+            message.textContent = `Unable to load Information Vault data: ${error.message}`;
+            message.style.color = "#a12c2c";
+          } finally {
+            button.classList.remove("is-busy");
+            button.disabled = false;
+          }
+        });
+      document
+        .querySelector("#submitButton")
+        .addEventListener("click", async () => {
+          const button = document.querySelector("#submitButton");
+          button.classList.add("is-busy");
+          button.disabled = true;
+          const payload = {
+            approvalName: document.querySelector("#approvalName").value.trim(),
+            department: document.querySelector("#department").value.trim(),
+          };
+          fields.forEach(
+            (key) =>
+              (payload[key] = document.querySelector(`#${key}`).value.trim()),
+          );
+          try {
+            if (!payload.businessName || !payload.email || !payload.phone) {
+              throw new Error("Click Autofill from ApprovalGuard Information Vault before submitting.");
+            }
+            let result;
+            if (requestedApplicationId) {
+              result = { applicationId: requestedApplicationId };
+            } else {
+              const response = await fetch("/api/applications", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+              });
+              result = await response.json();
+              if (!response.ok || !result.success)
+                throw new Error(result.message || "Submission failed.");
+            }
+            const trackingResponse = await fetch(`${approvalGuardUrl}/api/approval-tracking/applications`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                permissionToUseVault: true,
+                applicationId: result.applicationId,
+                approval: { approvalName: payload.approvalName, department: payload.department },
+                business: payload,
+              }),
+            });
+            const trackingResult = await trackingResponse.json();
+            if (!trackingResponse.ok || !trackingResult.success)
+              throw new Error(trackingResult.error || "Application was submitted but tracking could not be started.");
+            message.textContent = `Application ${result.applicationId} submitted and tracking started in ApprovalGuard.`;
+            message.style.color = "#16714a";
+            load();
+          } catch (error) {
+            message.textContent = error.message;
+            message.style.color = "#a12c2c";
+          } finally {
+            button.classList.remove("is-busy");
+            button.disabled = false;
+          }
+        });
+      async function deleteApplication(id) {
+        if (
+          !window.confirm(
+            "Delete this submitted application from the simulated government portal?",
+          )
+        )
+          return;
+        const r = await fetch("/api/applications/" + encodeURIComponent(id), {
+          method: "DELETE",
+        });
+        const j = await r.json();
+        if (!r.ok || !j.success) {
+          window.alert(j.message || "Unable to delete application.");
+          return;
+        }
+        load();
+      }
+      async function load() {
+        const r = await fetch("/api/applications");
+        const j = await r.json();
+        document.querySelector("#applications").innerHTML =
+          (j.data || [])
+            .map(
+              (a) =>
+                `<tr><td>${a.applicationId}</td><td>${a.businessName || ""}</td><td>${a.approvalName}</td><td>${a.department || ""}</td><td>${a.currentStatus}</td><td><a href="/application.html?id=${encodeURIComponent(a.applicationId)}">Open</a><button class="delete" onclick="deleteApplication('${a.applicationId}')">Delete</button></td></tr>`,
+            )
+            .join("") || '<tr><td colspan="6">No applications yet.</td></tr>';
+      }
+      load();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Applications</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="app-body">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <h3>Maharashtra Industrial Approval Portal</h3>
+        <div class="demo-tag">⚠ DEMO / SIMULATED</div>
+      </div>
+      <nav>
+        <a href="./dashboard.html">🏠 Dashboard</a>
+        <a href="./application.html" class="active">📋 Applications</a>
+        <a href="./review.html">🔎 Scrutiny</a>
+        <a href="./application.html#queries">❓ Queries</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <h1>APPLICATIONS</h1>
+        <div class="demo-text">⚠ DEMO GOVERNMENT PORTAL — SIMULATED ENVIRONMENT</div>
+      </header>
+
+      <section class="panel">
+        <h2>Create Approval Application</h2>
+        <p id="vaultPrefillStatus" class="demo-text">Click a field to begin. Reusable information will be filled from the Information Vault.</p>
+        <form id="approvalForm" class="query-grid">
+          <div><label for="approvalCode">Approval</label><select id="approvalCode" required><option value="DRUG_MFG_CONVENTIONAL_FORMULATION_DEMO">Conventional formulation manufacturing licence</option><option value="MPCB_CTE_PHARMA">MPCB Consent to Establish</option></select></div>
+          <div><label for="approvalName">Approval name</label><input id="approvalName" value="Drug Manufacturing Application" required /></div>
+          <div><label for="businessName">Business name</label><input id="businessName" required /></div>
+          <div><label for="businessType">Business type</label><input id="businessType" required /></div>
+          <div><label for="industry">Industry</label><input id="industry" required /></div>
+          <div><label for="state">State</label><input id="state" required /></div>
+          <div><label for="district">District</label><input id="district" required /></div>
+          <div><label for="investment">Investment</label><input id="investment" type="number" required /></div>
+          <div><label for="landArea">Land area</label><input id="landArea" type="number" required /></div>
+          <div><label for="employees">Employees</label><input id="employees" type="number" required /></div>
+          <div><label for="contactName">Contact person</label><input id="contactName" required /></div>
+          <div><label for="phone">Phone</label><input id="phone" required /></div>
+          <div><label for="email">Email</label><input id="email" type="email" required /></div>
+          <div><label for="plotNumber">Plot number</label><input id="plotNumber" /></div>
+          <div class="full-width"><button type="button" id="prefillVaultButton">Fill from Information Vault</button><button type="submit">Create Approval</button></div>
+        </form>
+        <p id="approvalFormMessage" class="demo-text"></p>
+      </section>
+
+      <section class="panel">
+        <div class="finder-row">
+          <input id="searchApplicationId" placeholder="Search Application ID" />
+          <select id="statusFilter">
+            <option value="ALL">All</option>
+            <option value="SUBMITTED">Submitted</option>
+            <option value="UNDER_SCRUTINY">Under Scrutiny</option>
+            <option value="DOCUMENT_VERIFICATION">Document Verification</option>
+            <option value="QUERY_RAISED">Query Raised</option>
+            <option value="APPROVED">Approved</option>
+            <option value="REJECTED">Rejected</option>
+          </select>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Applicant</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="applicationList"></tbody>
+        </table>
+      </section>
+
+      <section id="queries" class="panel">
+        <h2>Query Raised</h2>
+        <form id="queryForm">
+          <div class="query-grid">
+            <div>
+              <label>Application ID</label>
+              <input id="queryApplicationId" value="MAITRI-DEMO-2026-00421" />
+            </div>
+            <div>
+              <label>Query Type</label>
+              <select id="queryType">
+                <option>Document Issue</option>
+                <option>Compliance Clarification</option>
+                <option>Fee Concern</option>
+              </select>
+            </div>
+          </div>
+          <label>Description</label>
+          <textarea id="queryDescription">Land document plot number does not match the application information.</textarea>
+          <label>Required Action</label>
+          <textarea id="queryRequiredAction">Upload corrected land document.</textarea>
+          <button type="submit">Raise Query</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "storageKey": "approvalguard.information-vault.business.v3",
+  "description": "Information Vault reset state",
+  "fieldCount": 25,
+  "filledFields": 0,
+  "verifiedFields": 0,
+  "pendingFields": 25,
+  "verificationProgress": 0,
+  "status": "INCOMPLETE",
+  "criticalErrors": 4,
+  "approvalRecordsPreserved": true
+}

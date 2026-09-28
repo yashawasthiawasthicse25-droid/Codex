@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Incentives Vault | Maharashtra Industrial Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/feature-vaults.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div class="brand"><div class="brand-logo"><span>🇮🇳</span></div><div class="brand-text"><h2>महाराष्ट्र शासन</h2><h3>Industrial Support</h3><p>Approvals and incentives.</p></div></div>
+        <nav class="navigation">
+            <a href="./index.html" class="nav-item"><i data-lucide="home"></i><div><span>Home</span></div></a>
+            <a href="./profile.html" class="nav-item"><i data-lucide="factory"></i><div><span>Business Profile</span></div></a>
+            <a href="./application.html" class="nav-item"><i data-lucide="file-check-2"></i><div><span>Approval Readiness</span></div></a>
+            <a href="./document-vault.html" class="nav-item"><i data-lucide="vault"></i><div><span>Document Vault</span></div></a>
+            <a href="./information-vault.html" class="nav-item"><i data-lucide="database"></i><div><span>Information Vault</span><small>Verified facts</small></div></a>
+            <a href="./government-incentives.html" class="nav-item active"><i data-lucide="sparkles"></i><div><span>Government Incentives</span><small>Incentives Vault</small></div></a>
+        </nav>
+    </aside>
+    <main class="main">
+        <header class="top-header"><div class="header-context">Industrial Support Platform</div></header>
+        <section class="content application-content">
+            <div class="application-intro incentives-intro">
+                <a class="back-link" href="./index.html">← Dashboard</a>
+                <span class="eyebrow">PHARMACEUTICAL INCENTIVE MATCHING</span>
+                <h1>Find pharmaceutical incentives matched to your business</h1>
+                <p>We use verified facts from the Information Vault to surface relevant Maharashtra pharmaceutical incentive policies.</p>
+            </div>
+            <section class="incentive-summary" aria-label="Incentive matching summary">
+                <div><span class="summary-label">INFORMATION VAULT</span><strong id="vaultVerificationStatus">NOT READY</strong><p id="vaultVerificationSummary">Only records marked Verified are used for scoring.</p></div>
+                <div><strong id="matchedCount">0</strong><span>Matched categories</span></div>
+                <div><strong id="reviewCount">0</strong><span>Need more verified data</span></div>
+                <a class="primary-btn" href="./information-vault.html"><i data-lucide="database"></i> Review verified data</a>
+            </section>
+            <div class="incentive-dashboard-actions" aria-label="Incentive dashboard actions">
+                <button type="button" class="secondary-btn" id="verifyInformation"><i data-lucide="shield-check"></i> Verify Information</button>
+                <button type="button" class="primary-btn" id="recalculateScore"><i data-lucide="refresh-cw"></i> Recalculate Score</button>
+            </div>
+            <div class="incentive-notice"><i data-lucide="info"></i><span>Scoring: each verified evidence field contributes its published weight (total 100). Statuses are RELEVANT_MATCH at 80+, POSSIBLE_MATCH at 60–79, NEEDS_VERIFICATION at 30–59, and NOT_MATCHED below 30. A missing or unverified critical field blocks RELEVANT_MATCH. These results are not approvals or official eligibility decisions; confirm current terms, thresholds, and application windows with the relevant authority.</span></div>
+            <section id="incentiveList" class="incentive-grid"></section>
+        </section>
+    </main>
+</div>
+<script src="./JS/government-incentives.js"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>

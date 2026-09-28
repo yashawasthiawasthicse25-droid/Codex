@@ -1,0 +1,16 @@
+{
+  "name": "fake-government-portal",
+  "version": "1.0.0",
+  "description": "Simulated government portal for ApprovalGuard demo",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node --watch backend/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.8.0"
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "business_name": {
+    "fieldName": "business_name",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.313Z"
+  },
+  "business_type": {
+    "fieldName": "business_type",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "industry": {
+    "fieldName": "industry",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "business_stage": {
+    "fieldName": "business_stage",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "business_description": {
+    "fieldName": "business_description",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "registration_number": {
+    "fieldName": "registration_number",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "gstin": {
+    "fieldName": "gstin",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "pan": {
+    "fieldName": "pan",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "udyam_registration_number": {
+    "fieldName": "udyam_registration_number",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "address": {
+    "fieldName": "address",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "state": {
+    "fieldName": "state",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "district": {
+    "fieldName": "district",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "pin_code": {
+    "fieldName": "pin_code",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "plot_number": {
+    "fieldName": "plot_number",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "land_area": {
+    "fieldName": "land_area",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "total_investment": {
+    "fieldName": "total_investment",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "annual_turnover": {
+    "fieldName": "annual_turnover",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "investment_in_machinery": {
+    "fieldName": "investment_in_machinery",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "current_employees": {
+    "fieldName": "current_employees",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "expected_employees": {
+    "fieldName": "expected_employees",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "skilled_employees": {
+    "fieldName": "skilled_employees",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "owner_name": {
+    "fieldName": "owner_name",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "authorized_person": {
+    "fieldName": "authorized_person",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "email": {
+    "fieldName": "email",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  },
+  "phone_number": {
+    "fieldName": "phone_number",
+    "fieldValue": "",
+    "verificationStatus": "Unverified",
+    "lastUpdated": "2026-09-20T07:41:57.314Z"
+  }
+}

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo Application</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #eef3f7;
+        color: #17324d;
+      }
+      header {
+        background: #17324d;
+        color: white;
+        padding: 24px 8%;
+      }
+      main {
+        max-width: 900px;
+        margin: 28px auto;
+        padding: 0 20px;
+      }
+      .banner {
+        background: #f5c451;
+        color: #3a2a00;
+        padding: 14px;
+        font-weight: 700;
+        border-radius: 6px;
+      }
+      .panel {
+        background: white;
+        padding: 24px;
+        margin-top: 20px;
+        border-radius: 6px;
+      }
+      dl {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 12px;
+      }
+      dt {
+        font-weight: bold;
+      }
+      button {
+        background: #176b87;
+        color: white;
+        border: 0;
+        border-radius: 4px;
+        padding: 10px;
+        margin: 4px;
+        cursor: pointer;
+        transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+      }
+      button:hover { transform: translateY(-2px); box-shadow: 0 7px 16px rgba(23, 107, 135, .2); }
+      button:active { transform: scale(.98); }
+      button:focus-visible { outline: 3px solid rgba(245, 196, 81, .65); outline-offset: 3px; }
+      }
+      .danger {
+        background: #9b3b3b;
+      }
+      .delete {
+        background: #a12c2c;
+      }
+      #message {
+        font-weight: bold;
+        margin-top: 15px;
+      }
+      .snapshot {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin: 20px 0;
+        padding: 16px;
+        background: #f6fafc;
+        border: 1px solid #d8e5ed;
+        border-radius: 6px;
+      }
+      .snapshot strong,
+      .snapshot span {
+        display: block;
+      }
+      .snapshot span {
+        margin-top: 4px;
+        overflow-wrap: anywhere;
+      }
+      @media (max-width: 600px) {
+        .snapshot {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>DEMO GOVERNMENT PORTAL</h1>
+      <strong>SIMULATED ENVIRONMENT - MANUAL STATUS CONTROL</strong>
+    </header>
+    <main>
+      <div class="banner">
+        Use these buttons only to demonstrate ApprovalGuard tracking.
+      </div>
+      <section class="panel">
+        <h2 id="title">Application</h2>
+        <dl id="details"></dl>
+        <h3>Information received from ApprovalGuard</h3>
+        <div id="snapshot" class="snapshot"></div>
+        <p><strong>STATUS CONTROL</strong></p>
+        <div id="controls"></div>
+        <p id="message"></p>
+        <h3>Status history</h3>
+        <ol id="history"></ol>
+      </section>
+    </main>
+    <script>
+      const id = new URLSearchParams(location.search).get("id");
+      const statuses = [
+        "SUBMITTED",
+        "UNDER_SCRUTINY",
+        "DOCUMENT_VERIFICATION",
+        "QUERY_RAISED",
+        "QUERY_RESOLVED",
+        "APPROVED",
+        "REJECTED",
+      ];
+      const esc = (v) =>
+        String(v ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;",
+            })[c],
+        );
+      async function load() {
+        const r = await fetch("/api/applications/" + encodeURIComponent(id));
+        const j = await r.json();
+        if (!r.ok) {
+          document.querySelector("#message").textContent = j.message;
+          return;
+        }
+        const a = j.application;
+        document.querySelector("#title").textContent = a.applicationId;
+        document.querySelector("#details").innerHTML = [
+          ["Business", a.businessName],
+          ["Approval", a.approvalName],
+          ["Department", a.department],
+          ["Applicant", a.applicantName],
+          ["Current status", a.currentStatus],
+          ["Submitted", new Date(a.submittedAt).toLocaleString()],
+        ]
+          .map((x) => `<dt>${x[0]}</dt><dd>${esc(x[1])}</dd>`)
+          .join("");
+        document.querySelector("#snapshot").innerHTML = [
+          ["Business name", a.businessName],
+          ["Applicant name", a.applicantName],
+          ["PAN", a.pan],
+          ["GSTIN", a.gstin],
+          ["Address", a.address],
+          ["Phone", a.phone],
+          ["Email", a.email],
+          ["Industry", a.industry],
+        ]
+          .map(
+            (x) =>
+              `<div><strong>${x[0]}</strong><span>${esc(x[1] || "Not provided")}</span></div>`,
+          )
+          .join("");
+        document.querySelector("#controls").innerHTML = statuses
+          .map(
+            (s) =>
+              `<button class="${s === "REJECTED" ? "danger" : ""}" onclick="changeStatus('${s}')">${s}</button>`,
+          )
+          .join("");
+        document.querySelector("#history").innerHTML = (a.statusHistory || [])
+          .map(
+            (h) =>
+              `<li>${esc(h.oldStatus || "NEW")} -> ${esc(h.newStatus)} (${new Date(h.changedAt).toLocaleString()})</li>`,
+          )
+          .join("");
+      }
+      async function changeStatus(status) {
+        const r = await fetch(
+          "/api/applications/" + encodeURIComponent(id) + "/status",
+          {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status }),
+          },
+        );
+        const j = await r.json();
+        document.querySelector("#message").textContent =
+          j.message || `Status changed to ${status}.`;
+        load();
+      }
+      async function deleteApplication() {
+        if (
+          !window.confirm(
+            "Delete this submitted application from the simulated government portal?",
+          )
+        )
+          return;
+        const r = await fetch("/api/applications/" + encodeURIComponent(id), {
+          method: "DELETE",
+        });
+        const j = await r.json();
+        if (!r.ok || !j.success) {
+          document.querySelector("#message").textContent =
+            j.message || "Unable to delete application.";
+          return;
+        }
+        window.location.href = "/";
+      }
+      document
+        .querySelector("#controls")
+        .insertAdjacentHTML(
+          "afterend",
+          '<button class="delete" type="button" onclick="deleteApplication()">Delete submitted application</button>',
+        );
+      load();
+    </script>
+  </body>
+</html>
